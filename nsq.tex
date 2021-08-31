@@ -1,0 +1,65 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\section{singular 1/r}
+We want to compute by quadrature:
+\begin{equation}
+  \int_a^b f(r) \,\mathrm{d}r \quad \mathrm{with} \quad f(r) = \frac{1}{r} \quad .
+\end{equation}
+For $a=10^{-3}$ and $b=1.0$, the analytical result is $\mathrm{log}(b)-\mathrm{log}(a) \approx 6.91$.
+Standard trapezoidal quadrature on 100 points leads to
+\begin{equation}
+  \sum_{i=0}^{99} \frac{1/x_i + 1/x_{i+q}}{2} \Delta x \approx 10.1
+\end{equation}
+where
+\begin{equation}
+  x_i = a+\frac{i}{100-1}\Delta x ~ \mathrm{and} ~ \Delta x = \frac{b-a}{100-1} \quad .
+\end{equation}
+
+
+This specific quadrature can be made much more accurate by a substitution that leads to 
+\begin{equation}
+  \int_{s(a)}^{s(b)} \frac{1}{r} r\,\mathrm{d}s = \left[ s \right]_{s(a)}^{s(b)} \quad ,
+\end{equation}
+for which we need
+\begin{equation}
+  \mathrm{d}r = r \, \mathrm{d}s \quad .
+\end{equation}
+Rephrase:
+\begin{equation}
+  \frac{\mathrm{d}r}{r} = \mathrm{d}s \Leftrightarrow \int \frac{\mathrm{d}r}{r} = \int \mathrm{d}s \Leftrightarrow
+  \mathrm{log}(r) = s \quad .
+\end{equation}
+The quadrature for the substituded integral is then:
+\begin{equation}
+  \sum_{i=0}^{99} ...
+\end{equation}
+
+
+\section{nearly-singular 1/(r+eps)}
+We want to compute:
+\begin{equation}
+  \int_a^b f(r) \,\mathrm{d}r ~ \mathrm{where} ~ f(r) \propto \frac{1}{\sqrt{r^2 + \epsilon^2}} \quad .
+\end{equation}
+If we take $f$ to be the pure kernel function, an analytical solution to this can be found:
+\begin{equation}
+  \int_a^b \frac{1}{\sqrt{r^2 + \epsilon^2}} \,\mathrm{d}r = \mathrm{log}\left( b + \sqrt{b^2 + \epsilon^2} \right) - \mathrm{log}\left( a + \sqrt{a^2 + \epsilon^2} \right) \quad .
+\end{equation}
+Again do the substitution trick:
+\begin{equation}
+  \int_a^b f(r) \,\mathrm{d}r = \int_{s(a)}^{s(b)} f(r) \left(\sqrt{r^2 + \epsilon^2}\right) \,\mathrm{d}s \quad ,
+\end{equation}
+where we used
+\begin{equation}
+  \mathrm{d}r = \left(\sqrt{r^2 + \epsilon^2}\right) \,\mathrm{d}s \quad .
+\end{equation}
+The substitution is therefore
+\begin{equation}
+  s = \mathrm{log}\left(r + \sqrt{r^2 + \epsilon^2}\right) \quad .
+\end{equation}
+
+
+
+\end{document}
